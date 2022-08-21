@@ -28,7 +28,7 @@ export const QuestionCard = (
 
   useEffect(() => {
     setSortedA(props.answers.sort((a, b) => Math.random() - 0.5))
-  }, [])
+  }, [props.answers])
 
   useEffect(() => {
     props.map.set(props.id, answer)

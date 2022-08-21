@@ -39,7 +39,7 @@ function App() {
         }
       })
     }
-  }, [submit])
+  }, [map, sortedQ, submit])
 
   return (
     <>
