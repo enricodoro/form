@@ -2,13 +2,14 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Checkbox,
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { Answer, Question } from '../App'
+import { Answer, Question } from './QuestionPage'
 
 export const QuestionCard = (
   props: Question & {
@@ -36,7 +37,14 @@ export const QuestionCard = (
 
   return (
     <Card sx={{ width: '50%', borderTop: '4px solid teal' }}>
-      <CardHeader title={props.question} />
+      <CardHeader
+        title={props.question}
+        subheader={
+          props.question.startsWith('*')
+            ? 'Di questa domanda non è nota la risposta corretta'
+            : ''
+        }
+      />
       <CardContent>
         <FormControl fullWidth>
           {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
@@ -61,7 +69,9 @@ export const QuestionCard = (
                 }}
                 key={i}
                 value={i}
-                control={<Radio />}
+                control={
+                  props.question.startsWith('*+') ? <Checkbox /> : <Radio />
+                }
                 disabled={props.submit}
                 label={a.value}
               />

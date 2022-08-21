@@ -1,6 +1,6 @@
-import { Question } from "../App";
+import { Question } from "../components/QuestionPage";
 
-export const questions: Question[] = [
+export const giugno_questions: Question[] = [
 	{
 		question: "La dischezia",
 		answers: [

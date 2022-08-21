@@ -1,8 +1,8 @@
-import { Button, Stack, Typography } from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import { Button, IconButton, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { questions } from './23_06/questions'
-import './App.css'
-import { QuestionCard } from './components/QuestionCard'
+import { useNavigate } from 'react-router-dom'
+import { QuestionCard } from './QuestionCard'
 
 export type Answer = {
   value: string
@@ -14,13 +14,15 @@ export type Question = {
   answers: Answer[]
 }
 
-const list: Question[] = questions
-
-function App() {
+export default function QuestionPage(props: {
+  questions: Question[]
+  title: string
+}) {
   const [submit, setSubmit] = useState(false)
   const [sortedQ, setSortedQ] = useState<Question[]>([])
   const [correct, setCorrect] = useState(0)
   const map = new Map<number, number>()
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
     setSubmit(true)
@@ -33,9 +35,8 @@ function App() {
   }
 
   useEffect(() => {
-    setSortedQ(list.sort((a, b) => Math.random() - 0.5))
-  }, [])
-
+    setSortedQ(props.questions.sort((a, b) => Math.random() - 0.5))
+  }, [props.questions])
   return (
     <>
       <Stack
@@ -46,7 +47,9 @@ function App() {
         width="100%"
         marginY="8px"
       >
-        <Typography fontWeight="bold">23 Giugno</Typography>
+        <Typography fontWeight="bold" variant="h4">
+          {props.title}
+        </Typography>
         {sortedQ.map((q, i) => (
           <QuestionCard
             key={i}
@@ -73,8 +76,14 @@ function App() {
           {correct}/{sortedQ.length}
         </Typography>
       )}
+      <IconButton
+        size="large"
+        color="success"
+        sx={{ position: 'fixed', left: '32px', top: '32px' }}
+        onClick={() => navigate('/')}
+      >
+        <ArrowBackIcon />
+      </IconButton>
     </>
   )
 }
-
-export default App
