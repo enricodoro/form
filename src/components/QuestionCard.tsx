@@ -38,7 +38,7 @@ export const QuestionCard = (
     <Card sx={{ width: '50%', borderTop: '4px solid teal' }}>
       <CardHeader title={props.question} />
       <CardContent>
-        <FormControl>
+        <FormControl fullWidth>
           {/* <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel> */}
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
@@ -46,7 +46,7 @@ export const QuestionCard = (
             name="radio-buttons-group"
             onChange={(e) => setAnswer(+e.currentTarget.value)}
           >
-            {props.answers.map((a, i) => (
+            {sortedA?.map((a, i) => (
               <FormControlLabel
                 sx={{
                   paddingRight: '16px',
@@ -57,6 +57,7 @@ export const QuestionCard = (
                       : props.submit && i === answer
                       ? 'rgba(255,0,0,0.3)'
                       : '',
+                  borderRadius: '16px',
                 }}
                 key={i}
                 value={i}
