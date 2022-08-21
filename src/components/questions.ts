@@ -141,6 +141,7 @@ export const questions: Question[] = [
 			},
 			{
 				value: "Nessuna delle precedenti",
+				correct: true,
 			},
 		],
 	},
@@ -278,7 +279,7 @@ export const questions: Question[] = [
 				value: "Viscerale è ben localizzato",
 			},
 			{
-				value: "Riferito e`in vicinanza della sede patologica",
+				value: "Riferito è in vicinanza della sede patologica",
 			},
 			{
 				value: "Somatico è mal localizzato",
