@@ -1,8 +1,8 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { questions } from './23_06/questions'
 import './App.css'
 import { QuestionCard } from './components/QuestionCard'
-import { questions } from './components/questions'
 
 export type Answer = {
   value: string
@@ -24,22 +24,17 @@ function App() {
 
   const handleSubmit = () => {
     setSubmit(true)
+    sortedQ.forEach((q, i) => {
+      if (q.answers[map.get(i) as number]?.correct) {
+        setCorrect((old) => old + 1)
+      }
+    })
     window.scrollTo(0, 0)
   }
 
   useEffect(() => {
     setSortedQ(list.sort((a, b) => Math.random() - 0.5))
   }, [])
-
-  useEffect(() => {
-    if (submit) {
-      sortedQ.forEach((q, i) => {
-        if (q.answers[map.get(i) as number]?.correct) {
-          setCorrect((old) => old + 1)
-        }
-      })
-    }
-  }, [map, sortedQ, submit])
 
   return (
     <>

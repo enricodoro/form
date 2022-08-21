@@ -167,7 +167,7 @@ export const questions: Question[] = [
 		question: "Il segno di Homans viene ricercato nella",
 		answers: [
 			{
-				value: "Trombosi superficiale della gaba",
+				value: "Trombosi superficiale della gamba",
 			},
 			{
 				value: "Ischemia acuta dell'arto inferiore",
